@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
 
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
   const handleSearchChange = (e) => {
     setQuery(e.target.value);
+    onSearch(e.target.value);
   };
 
   const clearSearch = () => {
     setQuery("");
+    onSearch("");
   };
 
   return (
