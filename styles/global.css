@@ -171,8 +171,16 @@ body {
     color: #374339ed;
 }
 
+body.dark-mode .heading{
+    color: rgb(248, 243, 243);}
+
 .all-note{
     color: #374339ed;
+}
+
+body.dark-mode .all-note {
+    color: rgb(248, 243, 243);
+    
 }
 
 .tags{
@@ -183,5 +191,29 @@ body {
 .footer{
     font-family: 'Roboto', sans-serif;
      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    font-weight:700 ;
+     font-weight:700 ;
+}
+
+body.dark-mode {
+    background-color: #3c3b3b;
+    color: #f1f0f0;
+}
+
+body.dark-mode .footer{
+background-color: #3c3b3b !important;
+color: rgb(248, 243, 243) !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.custom-dark-bg {
+    background-color: #3c3b3b !important;
+   
+}
+
+.border-white {
+    border: 2px solid white;
+    background-color: #fff;
 }

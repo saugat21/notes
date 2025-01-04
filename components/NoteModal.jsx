@@ -11,7 +11,7 @@ const NoteModal = ({showModal,setShowModal}) => {
     tags: "",
   });
 
-
+ const [loading, setLoading] = useState(false);
 
   const uploadToCloudinary = async (file, type) => {
     const formData = new FormData();
@@ -37,6 +37,7 @@ const NoteModal = ({showModal,setShowModal}) => {
   // Handle Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+     setLoading(true); 
 
     try {
       // Upload image if provided
@@ -103,7 +104,7 @@ const NoteModal = ({showModal,setShowModal}) => {
 
               {/* Modal Body */}
               <div className="modal-body">
-                <form method="post" onSubmit={handleSubmit} >
+                <form method="post" onSubmit={handleSubmit}>
                   {/* Name Field */}
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label fw-bold">
@@ -185,7 +186,7 @@ const NoteModal = ({showModal,setShowModal}) => {
                       type="text"
                       id="tags"
                       className="form-control rounded-pill shadow-sm"
-                      placeholder=" #BCA, #BBA, #CSIT"
+                      placeholder=" #BCA , #BBA , #CSIT"
                       value={formData.tags}
                       onChange={(e) =>
                         setFormData({ ...formData, tags: e.target.value })
@@ -197,8 +198,9 @@ const NoteModal = ({showModal,setShowModal}) => {
                     <button
                       type="submit"
                       className="btn btn-primary rounded-pill shadow-sm"
+                      disabled={loading}
                     >
-                      Create Note
+                      {loading ? "Creating..." : "Create Note"}
                     </button>
                   </div>
                 </form>

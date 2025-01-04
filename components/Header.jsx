@@ -2,32 +2,56 @@
 "use client"
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoteModal from "@/components/NoteModal";
 import HeaderSkeleton from "./HeaderSkeleton";
 import Logo from "@/public/ll.png"
+import { FaMoon, FaSun } from "react-icons/fa";
 
 
 const Header = () => {
-  const { data: session,status } = useSession();
- const [showModal, setShowModal] = useState(false);
+  const { data: session, status } = useSession();
+  const [showModal, setShowModal] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
- if (status === "loading") {
-   return (
-    <HeaderSkeleton/>
-   );
- }
-  
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setDarkMode(true);
+      document.body.classList.add("dark-mode");
+    }
+  }, []);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+    if (!darkMode) {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  if (status === "loading") {
+    return <HeaderSkeleton />;
+  }
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className={`navbar navbar-expand-lg ${
+          darkMode ? "custom-dark-bg" : "navbar-light bg-light"
+        }`}
+      >
         <div className="container">
           <Image
             src={Logo}
             height={80}
             width={0}
             alt="this is an logo"
-           
+            priority
           />
           <button
             className="navbar-toggler"
@@ -38,7 +62,11 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span
+              className={`navbar-toggler-icon ${
+                darkMode ? "border-white" : ""
+              } `}
+            ></span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
@@ -59,6 +87,16 @@ const Header = () => {
                       onClick={() => signOut()}
                     >
                       Logout
+                    </button>
+                  </li>
+                  <li className="nav-item me-2 mt-2">
+                    {/* Toggle Dark Mode */}
+                    <button
+                      className="btn btn-secondary"
+                      onClick={toggleDarkMode}
+                      aria-label="Toggle dark mode"
+                    >
+                      {darkMode ? <FaSun /> : <FaMoon />}
                     </button>
                   </li>
                   <li className="nav-item d-none d-lg-block mt-2">

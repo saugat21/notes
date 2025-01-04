@@ -68,7 +68,9 @@ const Card = () => {
   return (
     <div className="container my-5">
       <SearchBar query={query} onSearch={handleSearch} />
-      <h2 className="fw-bold mt-3 mb-4 all-note">All Notes</h2>
+      <h2 className="fw-bold mt-3 mb-4 all-note">
+        {query ? `Search Notes for "${query}"` : "All Notes"}
+      </h2>
       <div className="row justify-content-center ">
         {loading
           ? Array.from({ length: 4 }).map((_, index) => (
@@ -105,13 +107,15 @@ const Card = () => {
                         note.tags.map((tag, index) => (
                           <span
                             key={index}
-                            className="tags badge  text-black me-1 fs-6"
+                            className="tags badge  text-black me-1 fs-6 text-truncate"
                           >
                             {tag}
                           </span>
                         ))
                       ) : (
-                        <span className="badge bg-warning">{note.tags}</span>
+                        <span className="badge bg-warning text-truncate">
+                          {note.tags}
+                        </span>
                       )}
                     </div>
 
