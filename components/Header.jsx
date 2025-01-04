@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import NoteModal from "@/components/NoteModal";
 import HeaderSkeleton from "./HeaderSkeleton";
+import Logo from "@/public/ll.png"
 
 
 const Header = () => {
@@ -21,9 +22,13 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <a className="navbar-brand fw-bold fs-4 text-primary" href="#">
-            Notes
-          </a>
+          <Image
+            src={Logo}
+            height={80}
+            width={0}
+            alt="this is an logo"
+           
+          />
           <button
             className="navbar-toggler"
             type="button"
@@ -36,7 +41,6 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-        
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto align-items-center">
               {session ? (

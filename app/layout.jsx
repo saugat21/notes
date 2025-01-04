@@ -3,6 +3,7 @@ import "@/styles/global.css"
 import "bootstrap/dist/css/bootstrap.min.css"; 
 import Header from "@/components/Header.jsx"
 import Provider from "@/components/Provider";
+import Footer from "@/components/Footer";
 
 
 export const metadata={
@@ -15,7 +16,6 @@ const layout = ({children}) => {
   return (
     <html lang="en">
       <head>
-        
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -30,6 +30,7 @@ const layout = ({children}) => {
           <main>
             <Header />
             {children}
+            <Footer />
           </main>
         </Provider>
       </body>

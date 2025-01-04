@@ -68,7 +68,7 @@ const Card = () => {
   return (
     <div className="container my-5">
       <SearchBar query={query} onSearch={handleSearch} />
-      <h2 className="fw-bold mt-3">All Notes</h2>
+      <h2 className="fw-bold mt-3 mb-4 all-note">All Notes</h2>
       <div className="row justify-content-center ">
         {loading
           ? Array.from({ length: 4 }).map((_, index) => (
@@ -84,7 +84,7 @@ const Card = () => {
                     src={note.image || "https://via.placeholder.com/150"}
                     className="card-img-top"
                     alt={note.name}
-                    height={20}
+                    height={40}
                     width={40}
                   />
                   <div className="card-body">
