@@ -88,13 +88,13 @@ const NoteModal = ({showModal,setShowModal}) => {
       {showModal && (
         <div
           className="modal"
-          style={{ display: "block", backgroundColor: "rgba(0,0,0,0.5)" }}
+          style={{ display: "block", backgroundColor: "rgba(46, 44, 44, 0.5)" }}
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               {/* Modal Header */}
               <div className="modal-header bg-primary text-white">
-                <h5 className="modal-title">Create Note</h5>
+                <h5 className="modal-title create-note">Create Note</h5>
                 <button
                   type="button"
                   className="btn-close btn-close-white"
@@ -107,7 +107,10 @@ const NoteModal = ({showModal,setShowModal}) => {
                 <form method="post" onSubmit={handleSubmit}>
                   {/* Name Field */}
                   <div className="mb-3">
-                    <label htmlFor="name" className="form-label fw-bold">
+                    <label
+                      htmlFor="name"
+                      className="form-label fw-bold text-dark"
+                    >
                       Note Name
                     </label>
                     <input
@@ -125,7 +128,10 @@ const NoteModal = ({showModal,setShowModal}) => {
 
                   {/* Description Field */}
                   <div className="mb-3">
-                    <label htmlFor="description" className="form-label fw-bold">
+                    <label
+                      htmlFor="description"
+                      className="form-label fw-bold text-dark"
+                    >
                       Description
                     </label>
                     <textarea
@@ -146,7 +152,10 @@ const NoteModal = ({showModal,setShowModal}) => {
 
                   {/* Image Field */}
                   <div className="mb-3">
-                    <label htmlFor="image" className="form-label fw-bold">
+                    <label
+                      htmlFor="image"
+                      className="form-label fw-bold text-dark"
+                    >
                       Image
                     </label>
                     <input
@@ -163,7 +172,10 @@ const NoteModal = ({showModal,setShowModal}) => {
 
                   {/* PDF Field */}
                   <div className="mb-3">
-                    <label htmlFor="pdf" className="form-label fw-bold">
+                    <label
+                      htmlFor="pdf"
+                      className="form-label fw-bold text-dark"
+                    >
                       PDF
                     </label>
                     <input
@@ -179,7 +191,10 @@ const NoteModal = ({showModal,setShowModal}) => {
 
                   {/* Tags Field */}
                   <div className="mb-3">
-                    <label htmlFor="tags" className="form-label fw-bold">
+                    <label
+                      htmlFor="tags"
+                      className="form-label fw-bold text-dark"
+                    >
                       Tags (comma-separated)
                     </label>
                     <input
@@ -197,7 +212,7 @@ const NoteModal = ({showModal,setShowModal}) => {
                   <div className="d-grid gap-2">
                     <button
                       type="submit"
-                      className="btn btn-primary rounded-pill shadow-sm"
+                      className="btn btn-primary rounded-pill shadow-sm fw-bold"
                       disabled={loading}
                     >
                       {loading ? "Creating..." : "Create Note"}
