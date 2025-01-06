@@ -18,16 +18,34 @@ export const authOptions = {
 
         async signIn({ profile }) {
             try {
+                console.log("Received profile during sign-in:", profile);
+                if (!profile || !profile.email) {
+                    console.error("Missing or invalid profile data");
+                    return false; // Deny sign-in due to incomplete data
+                }
                 await connectDB();
                 const userExists = await User.findOne({ email: profile.email });
-
-                if (!userExists) {
-                    await User.create({
+                if (userExists) {
+                    console.log(`User already exists: ${userExists.email}`);
+                } else {
+                    console.log("Creating a new user");
+                    const newUser = await User.create({
                         email: profile.email,
-                        username: profile.name,
-                        image: profile.picture, // Use `picture` from Google profile
+                        username: profile.name, // Fallback for missing name
+                        image: profile.picture, // Fallback for missing image
                     });
+                    console.log("New user created:", newUser);
                 }
+
+
+
+                // if (!userExists) {
+                //     await User.create({
+                //         email: profile.email,
+                //         username: profile.name,
+                //         image: profile.picture, // Use `picture` from Google profile
+                //     });
+                // }
 
                 return true; // Allow sign-in
             } catch (error) {
