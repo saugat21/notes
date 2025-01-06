@@ -14,18 +14,7 @@ export const authOptions = {
         strategy: "jwt",
     },
     callbacks: {
-        async session({ session, token }) {
-            await connectDB();
-            const sessionUser = await User.findOne({ email: session.user.email });
 
-            if (sessionUser) {
-                session.user.id = sessionUser._id.toString();
-            } else {
-                session.user.id = token.id; // Fallback for JWT session
-            }
-
-            return session;
-        },
 
         async signIn({ profile }) {
             try {
@@ -45,6 +34,20 @@ export const authOptions = {
                 console.error("Error signing in:", error);
                 return false; // Deny sign-in
             }
+        },
+
+
+        async session({ session, token }) {
+            await connectDB();
+            const sessionUser = await User.findOne({ email: session.user.email });
+
+            if (sessionUser) {
+                session.user.id = sessionUser._id.toString();
+            } else {
+                session.user.id = token.id; // Fallback for JWT session
+            }
+
+            return session;
         },
     },
 };
